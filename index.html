@@ -1,0 +1,418 @@
+html_content = r"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Experiments: Procedures</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #e67e22;
+            margin-top: 20px;
+        }
+        .step {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #f9fbfd;
+        }
+        .step-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        code {
+            background-color: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            display: block;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        ul, ol {
+            margin-top: 10px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        .divider {
+            height: 4px;
+            background-color: #2c3e50;
+            margin: 50px 0;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- EXPERIMENT 3 -->
+        <h1>Experiment No. 3: Testing IoT Device Security</h1>
+        <p><strong>Aim:</strong> To analyze security weaknesses in a simulated IoT device by identifying open ports, running services, service version disclosure, default/weak authentication, and unencrypted communication.</p>
+        
+        <h2>Procedure Steps</h2>
+        
+        <div class="step">
+            <div class="step-title">Step 1: Deploy Vulnerable IoT Simulation</div>
+            <p>Run the vulnerable web application (OWASP Juice Shop) using Docker on the Windows host system. Open Command Prompt and execute the following command:</p>
+            <div class="code-block">docker run -d -p 8090:3000 --name juiceshop bkimminich/juice-shop</div>
+            <p>The application can now be accessed locally at <code>http://localhost:8090</code>.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 2: Identify Host IP Address</div>
+            <p>Find the IP address of the Windows machine hosting the Docker container to simulate scanning an IoT device over a LAN. In Command Prompt, run:</p>
+            <div class="code-block">ipconfig</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 3: Perform Network Scan from Kali Linux</div>
+            <p>Switch to the Kali Linux attacker machine. Perform a port scan, service detection, version detection, and banner grabbing against the target IP address using Nmap:</p>
+            <div class="code-block">nmap -sV 192.168.0.148</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 4: Analyze Nmap Version Scan (-sV) Results</div>
+            <p>Review the output from the Nmap scan. Look for:</p>
+            <ul>
+                <li>Open ports (e.g., Port 8090 running HTTP)</li>
+                <li>Service fingerprints / version detection (identifying it as Juice Shop)</li>
+                <li>Other exposed Windows system ports (135, 139, 445)</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 5: Accessing the IoT Device Web Dashboard</div>
+            <p>Open a web browser and navigate to the simulated IoT device's dashboard using the target IP and discovered port:</p>
+            <div class="code-block">http://localhost:8090</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 6: Testing Default/Weak Credentials</div>
+            <p>Test the login functionality to check for default or weak password vulnerabilities. Attempt to log in using common administrator credentials.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 7: Inspect Network Traffic (Developer Tools)</div>
+            <p>Open the browser's Developer Tools and navigate to the <strong>Network Tab</strong>.</p>
+            <ul>
+                <li>Observe the HTTP requests being made.</li>
+                <li>Verify that the communication is running over plain HTTP.</li>
+                <li>Note that data is transmitted in plain text without SSL/TLS encryption.</li>
+            </ul>
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <!-- EXPERIMENT: DISK IMAGES -->
+        <h1>Experiment: Creating and Analyzing Disk Images Using dc3dd and Autopsy</h1>
+        <p><strong>Aim:</strong> To create a forensic disk image and analyze digital evidence using dc3dd and Autopsy in Kali Linux.</p>
+
+        <h2>Procedure Steps</h2>
+
+        <div class="step">
+            <div class="step-title">Step 1: Open Terminal in Kali Linux</div>
+            <p>Press the following keyboard shortcut to open the terminal:</p>
+            <div class="code-block">Ctrl + Alt + T</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 2: Create Sample Evidence</div>
+            <p>Generate a file that will later be discovered during forensic analysis:</p>
+            <div class="code-block">echo "Cybersecurity Lab Evidence" > evidence.txt</div>
+            <p>Verify the file creation by running the <code>ls</code> command.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 3: Identify Disk Partition & Install Tools</div>
+            <p>List storage devices to identify the target partition (e.g., <code>/dev/sda1</code>) using:</p>
+            <div class="code-block">lsblk</div>
+            <p>Install the disk imaging tool using:</p>
+            <div class="code-block">sudo apt install dc3dd</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 4: Create & Mount Disk Image</div>
+            <p>Create a small practice disk file (100 MB):</p>
+            <div class="code-block">dd if=/dev/zero of=practice_disk.dd bs=1M count=100</div>
+            <p>Mount the newly created disk:</p>
+            <div class="code-block">mkfs.ext4 practice_disk.dd</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 5: Verify Image Creation</div>
+            <p>Check that the image was created successfully:</p>
+            <div class="code-block">ls -lh /home/kali/disk_image.dd</div>
+            <p>Read the acquisition log file to review image size, hash value, and details:</p>
+            <div class="code-block">cat /home/kali/acquisition.log</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 6: Start Autopsy</div>
+            <p>Launch the forensic analysis tool by typing the following into the terminal:</p>
+            <div class="code-block">autopsy</div>
+            <p>The terminal will display a URL (<code>http://localhost:9999/autopsy</code>). Open this link in your web browser.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 7: Create a New Case</div>
+            <p>In the Autopsy web interface, click <strong>Create New Case</strong> and enter the required case details (such as Case Name, Description, and Investigator Names).</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 8: Add Disk Image</div>
+            <p>Navigate to <strong>Add Host &rarr; Add Image</strong>.</p>
+            <ul>
+                <li>Browse and select the image path: <code>/home/kali/disk_image.dd</code></li>
+                <li>Fill out recommended host details (e.g., Host Name: <em>KaliLabMachine</em>).</li>
+                <li>Click <strong>Next</strong> to allow Autopsy to begin analyzing the disk image.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 9: Analyze Evidence</div>
+            <p>Use the Autopsy interface to analyze the volume, examining file details, keyword searches, and metadata extracted from the image.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- NEW EXPERIMENT: LOG FILE ANALYSIS -->
+        <h1>EXERCISE: LOG FILE ANALYSIS FOR INCIDENT DETECTION LAB </h1>
+        <p><strong>Aim:</strong> To analyze system log files and detect suspicious activities such as failed login attempts and identify suspicious IP addresses .</p>
+
+        <h2>Objectives </h2>
+        <ul>
+            <li>Understand system log files .</li>
+            <li>Detect suspicious activities and incidents .</li>
+            <li>Analyze logs using Linux tools .</li>
+            <li>Identify attack patterns (failed logins, brute force, etc.)  .</li>
+        </ul>
+
+        <h2>Requirements & Tools  </h2>
+        <ul>
+            <li>Kali Linux/Ubuntu VM  .</li>
+            <li>Basic Linux command knowledge  .</li>
+            <li><strong>Tools:</strong> Kali Linux, journalctl, ssh, grep, awk, sort, less, cat  .</li>
+        </ul>
+
+        <h2>Understanding Log Files  </h2>
+        <div class="step">
+            <div class="step-title">Navigate to Log Directory  </div>
+            <div class="code-block">cd /var/log<br>ls</div>
+            <p>The <code>/var/log</code> directory contains system and application logs such as Apache, Nginx, and login records used for security analysis  .</p>
+            <ul>
+                <li><strong>dpkg.log:</strong> package activity  .</li>
+                <li><strong>apache2:</strong> web server logs  .</li>
+                <li><strong>nginx:</strong> web logs  .</li>
+                <li><strong>journal:</strong> system logs (IMPORTANT)  .</li>
+                <li><strong>wtmp, btmp:</strong> login records  .</li>
+            </ul>
+        </div>
+
+        <h2>Log Analysis Commands  </h2>
+        <div class="step">
+            <div class="step-title">Successful Logins (wtmp)  </div>
+            <div class="code-block">last</div>
+            <p>Capture: Login history  . This displays successful login sessions  . It helps identify legitimate and suspicious user access  .</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">System Logs using journalctl  </div>
+            <div class="code-block">journalctl | less</div>
+            <p>The journalctl command provides centralized system logs including authentication, services, and system events  . Capture: Logs output  .</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Failed SSH Attempts  </div>
+            <div class="code-block">journalctl | grep "Failed"</div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">SSH Login Activity  </div>
+            <div class="code-block">journalctl | grep ssh</div>
+            <p>This shows failed authentication attempts, which may indicate unauthorized access attempts  . It also displays SSH-related logs, including login attempts and connections  .</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Error Detection  </div>
+            <div class="code-block">journalctl | grep -i error</div>
+            <p>Highlights system errors, which may indicate abnormal behavior or system issues  .</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Apache Log Analysis  </div>
+            <div class="code-block">cd /var/log/apache2<br>ls<br>sudo less access.log</div>
+            <p>Apache logs record web requests  . These logs help identify suspicious web activity such as repeated requests or attacks  .</p>
+            <p><strong>Suspicious Requests:</strong></p>
+            <div class="code-block">grep "404" /var/log/apache2/access.log</div>
+            <p>This shows failed web requests (404 errors), which may indicate scanning or probing attacks  .</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Package Activity  </div>
+            <div class="code-block">less /var/log/dpkg.log</div>
+            <p>This shows software installation and update logs, useful for detecting unauthorized changes  .</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Real-Time Monitoring  </div>
+            <div class="code-block">sudo journalctl -f</div>
+            <p>This shows real-time system log monitoring, allowing detection of incidents as they occur  .</p>
+        </div>
+
+        <h2>Quick Checklist  </h2>
+        <table>
+            <tr>
+                <th>Check  </th>
+                <th>Command  </th>
+                <th>Suspicious If  </th>
+            </tr>
+            <tr>
+                <td>Failed logins  </td>
+                <td>lastb  </td>
+                <td>Many attempts  </td>
+            </tr>
+            <tr>
+                <td>SSH activity  </td>
+                <td>journalctl | grep ssh  </td>
+                <td>-  </td>
+            </tr>
+            <tr>
+                <td>Login history  </td>
+                <td>last  </td>
+                <td>Odd timing  </td>
+            </tr>
+            <tr>
+                <td>Errors  </td>
+                <td>journalctl | grep error  </td>
+                <td>-  </td>
+            </tr>
+            <tr>
+                <td>Web logs  </td>
+                <td>grep 404  </td>
+                <td>Many failed requests  </td>
+            </tr>
+        </table>
+
+        <h2>Step-by-Step Analysis of Your Log  </h2>
+        <ul>
+            <li><strong>1. System Services (NORMAL):</strong> Finished phpsessionclean.service  . Finished systemd-tmpfiles-clean.service  . These are routine background tasks  . No issue  . Regular system maintenance services were observed, indicating normal system operation  .</li>
+            <li><strong>2. CRON Jobs (NORMAL):</strong> CRON: session opened for user root  . (root) CMD (debian-sal)  . Automated scheduled task  . Runs periodically  . Scheduled cron jobs were observed, which are normal automated system processes  .</li>
+            <li><strong>3. Your Own SUDO Activity (NORMAL):</strong> kali: COMMAND=/usr/bin/less access.log  . kali: COMMAND=/usr/bin/journalctl -f  . This is YOU running commands  . Not suspicious  . Sudo activity corresponds to legitimate administrative actions performed by the user  .</li>
+            <li><strong>4. XFCE/GUI Services (NORMAL):</strong> xfconfd.service started  . Desktop environment service  . Normal  .</li>
+            <li><strong>5. IMPORTANT PART (Repeated Kernel Messages):</strong> dndHGCM: Received message HOST_DND_FN_GH_REQ_PENDING  . dnd: No guest source window  . These lines are: Repeated MANY times  , Coming from VirtualBox (VBoxDRM / DnD)  . Is This Suspicious? Technically: NOT an attack  . But abnormal repetitive behavior  . Why it matters: Repeated logs = unusual system activity  . Could indicate: Misconfiguration  , Resource issue  , VirtualBox interaction problem  .</li>
+        </ul>
+
+        <h2>METHOD 1: Simulate Failed SSH Login  </h2>
+        <div class="step">
+            <div class="step-title">Step 1: Ensure SSH is Installed  </div>
+            <div class="code-block">sudo apt install openssh-server -y</div>
+        </div>
+        <div class="step">
+            <div class="step-title">Step 2: Start SSH Service  </div>
+            <div class="code-block">sudo service ssh start</div>
+        </div>
+        <div class="step">
+            <div class="step-title">Step 3: Find Your IP Address  </div>
+            <div class="code-block">ip a</div>
+            <p>Look for something like: <code>inet 192.168.x.x</code>  </p>
+        </div>
+        <div class="step">
+            <div class="step-title">Step 4: Attempt Wrong Login (Generate Failures)  </div>
+            <div class="code-block">ssh fakeuser@localhost<br># OR<br>ssh kali@localhost</div>
+            <p>Enter wrong password multiple times (5-10 times)  .</p>
+        </div>
+
+        <h3>Now Analyze Logs  </h3>
+        <div class="step">
+            <div class="step-title">Step 5: Check Failed Logins  </div>
+            <div class="code-block">journalctl | grep "Failed password"</div>
+            <p>You should now see: <code>Failed password for kali from 127.0.0.1 port</code>  .</p>
+        </div>
+        <div class="step">
+            <div class="step-title">Step 6: Extract Suspicious IP  </div>
+            <div class="code-block">journalctl | grep "Failed password" | awk '{print $11}'</div>
+            <p>Output: <code>127.0.0.1</code>  .</p>
+        </div>
+        <div class="step">
+            <div class="step-title">Step 7: Count Attempts Per IP  </div>
+            <div class="code-block">journalctl | grep "Failed password" | awk '{print $11}' | sort | uniq -c | sort -nr</div>
+            <p>Example: <code>10 127.0.0.1</code>  .</p>
+        </div>
+
+        <p><strong>INTERPRETATION (VERY IMPORTANT):</strong> Multiple failed login attempts were detected from IP address 127.0.0.1, indicating a simulated brute force attack  .</p>
+
+        <h2>METHOD 2: Use lastb (Alternative)  </h2>
+        <div class="step">
+            <div class="code-block">sudo lastb</div>
+            <p>Shows failed login records  .</p>
+        </div>
+
+        <h2>How To Identify "Suspicious IP"  </h2>
+        <p>Simple rule  :</p>
+        <ul>
+            <li>Same IP repeated many times &rarr; Suspicious  .</li>
+            <li>Unknown IP &rarr; Suspicious  .</li>
+            <li>High frequency attempts &rarr; Brute force  .</li>
+        </ul>
+        <div class="step">
+            <div class="code-block">journalctl --since "10 minutes ago"</div>
+            <p>Shows recent attack activity  .</p>
+        </div>
+
+    </div>
+</body>
+</html>
