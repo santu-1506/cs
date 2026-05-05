@@ -1,4 +1,4 @@
-html_content = r"""
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -550,188 +550,426 @@ html_content = r"""
             <li>What is a filter in Wireshark?</li>
         </ul>
 
-
         <div class="divider"></div>
 
-        <!-- NEW EXPERIMENT: PRIVACY AUDIT & DATA BREACH -->
-        <h1>CYBER SECURITY LAB EXPERIMENT: Privacy Audit of Popular Apps and Websites & Data Breach Case Study Analysis </h1>
-        <p><strong>Aim:</strong> To analyze privacy, network behavior, and security risks of applications and websites using Kali Linux tools .</p>
+        <!-- EXPERIMENT: PRIVACY AUDIT & DATA BREACH -->
+        <h1>CYBER SECURITY LAB EXPERIMENT: Privacy Audit of Popular Apps and Websites & Data Breach Case Study Analysis</h1>
+        <p><strong>Aim:</strong> To analyze privacy, network behavior, and security risks of applications and websites using Kali Linux tools.</p>
 
-        <h2>Tools Required </h2>
+        <h2>Tools Required</h2>
         <ul>
-            <li>Wireshark </li>
-            <li>Burp Suite </li>
-            <li>Kali Linux (VirtualBox)    </li>
-            <li>Desktop WhatsApp (Nativefier)    </li>
-            <li>Web Browser (Firefox)    </li>
+            <li>Wireshark</li>
+            <li>Burp Suite</li>
+            <li>Kali Linux (VirtualBox)</li>
+            <li>Desktop WhatsApp (Nativefier)</li>
+            <li>Web Browser (Firefox)</li>
         </ul>
 
-        <h2>Preparation Steps    </h2>
+        <h2>Preparation Steps</h2>
         <div class="step">
-            <div class="step-title">Step 1: Install Node.js & npm    </div>
+            <div class="step-title">Step 1: Install Node.js & npm</div>
             <div class="code-block">sudo apt update<br>sudo apt install nodejs npm -y</div>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 2: Install Nativefier    </div>
+            <div class="step-title">Step 2: Install Nativefier</div>
             <div class="code-block">sudo npm install -g nativefier</div>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 3: Create WhatsApp Desktop App    </div>
+            <div class="step-title">Step 3: Create WhatsApp Desktop App</div>
             <div class="code-block">nativefier https://web.whatsapp.com</div>
-            <p>It will create a folder like: <code>web-whatsapp-linux-arm64</code>    .</p>
+            <p>It will create a folder like: <code>web-whatsapp-linux-x64</code>.</p>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 4: Run WhatsApp    </div>
-            <div class="code-block">cd WhatsAppWeb-linux-arm64<br>./WhatsAppWeb</div>
+            <div class="step-title">Step 4: Run WhatsApp</div>
+            <div class="code-block">cd WhatsAppWeb-linux-x64<br>./WhatsAppWeb</div>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 5: Login    </div>
-            <p>Scan QR code using mobile    . Done    .</p>
+            <div class="step-title">Step 5: Login</div>
+            <p>Scan QR code using mobile. Done.</p>
         </div>
 
-        <h2>PART 1: Privacy Audit of Desktop WhatsApp    </h2>
+        <h2>PART 1: Privacy Audit of Desktop WhatsApp</h2>
         
         <div class="step">
-            <div class="step-title">Step 1: Launch WhatsApp Desktop    </div>
-            <div class="code-block">cd WhatsAppWeb-linux-arm64<br>./WhatsAppWeb</div>
-            <p>QR Code appears    . Login using mobile &rarr; Linked Devices    .</p>
-            <p><em>Step 1 (Optional in Emulator): Install WhatsApp APK    . Download APK from trusted source or use your mobile    .</em></p>
+            <div class="step-title">Step 1: Launch WhatsApp Desktop</div>
+            <div class="code-block">cd WhatsAppWeb-linux-x64<br>./WhatsAppWeb</div>
+            <p>QR Code appears. Login using mobile &rarr; Linked Devices.</p>
+            <p><em>Step 1 (Optional in Emulator): Install WhatsApp APK. Download APK from trusted source or use your mobile.</em></p>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 2: Analyze Trackers using Exodus Privacy    </div>
-            <p>Open browser in Kali    . Go to: <code>https://reports.exodus-privacy.eu.org</code>    . Search for WhatsApp    .</p>
-            <p><strong>Observation:</strong>    </p>
+            <div class="step-title">Step 2: Analyze Trackers using Exodus Privacy</div>
+            <p>Open browser in Kali. Go to: <code>https://reports.exodus-privacy.eu.org</code>. Search for WhatsApp.</p>
+            <p><strong>Observation:</strong></p>
             <ul>
-                <li>Detects trackers like: Google Analytics, Crashlytics, Facebook Analytics    .</li>
-                <li>Record in lab: Number of trackers, Permissions used    .</li>
+                <li>Detects trackers like: Google Analytics, Crashlytics, Facebook Analytics.</li>
+                <li>Record in lab: Number of trackers, Permissions used.</li>
             </ul>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 2 (Continued): Start Wireshark    </div>
-            <p>Open Wireshark    . Select interface (<code>eth0</code> / <code>wlan0</code>)    . Click Start Capture    .</p>
+            <div class="step-title">Step 2 (Continued): Start Wireshark</div>
+            <p>Open Wireshark. Select interface (<code>eth0</code> / <code>wlan0</code>). Click Start Capture.</p>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 3: Generate Traffic    </div>
-            <p>In WhatsApp Desktop: Send messages, Send images, Open chats    .</p>
+            <div class="step-title">Step 3: Generate Traffic</div>
+            <p>In WhatsApp Desktop: Send messages, Send images, Open chats.</p>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 4: Apply Filters    </div>
-            <p>Use filters: <code>tls</code>, <code>dns</code>    .</p>
-            <p><strong>Observations:</strong>    </p>
+            <div class="step-title">Step 4: Apply Filters</div>
+            <p>Use filters: <code>tls</code>, <code>dns</code>.</p>
+            <p><strong>Observations:</strong></p>
             <ul>
-                <li>Encrypted traffic (TLS packets)    .</li>
-                <li>Domains: whatsapp.net, facebook.com    .</li>
-                <li>Message content NOT visible    .</li>
+                <li>Encrypted traffic (TLS packets).</li>
+                <li>Domains: whatsapp.net, facebook.com.</li>
+                <li>Message content NOT visible.</li>
             </ul>
         </div>
 
         <div class="step">
-            <div class="step-title">Findings    </div>
+            <div class="step-title">Findings</div>
             <ul>
-                <li>End-to-End Encryption    .</li>
-                <li>Secure communication    .</li>
-                <li>Metadata visible: IP address, Time, Server communication    .</li>
+                <li>End-to-End Encryption.</li>
+                <li>Secure communication.</li>
+                <li>Metadata visible: IP address, Time, Server communication.</li>
             </ul>
         </div>
 
-        <h2>PART 2: Privacy Audit of Facebook Website    </h2>
+        <h2>PART 2: Privacy Audit of Facebook Website</h2>
 
         <div class="step">
-            <div class="step-title">Step 1: Open Facebook    </div>
-            <p>Navigate to <code>https://www.facebook.com</code>    . Login using test account    .</p>
+            <div class="step-title">Step 1: Open Facebook</div>
+            <p>Navigate to <code>https://www.facebook.com</code>. Login using test account.</p>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 2: Start Burp Suite    </div>
-            <p>Launch Burpsuite    .</p>
+            <div class="step-title">Step 2: Start Burp Suite</div>
+            <p>Launch Burpsuite.</p>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 3: Configure Proxy    </div>
-            <p>IP: <code>127.0.0.1</code>    . Port: <code>8080</code>    .</p>
-            <p>In browser: Settings &rarr; Network &rarr; Manual Proxy    .</p>
+            <div class="step-title">Step 3: Configure Proxy</div>
+            <p>IP: <code>127.0.0.1</code>. Port: <code>8080</code>.</p>
+            <p>In browser: Settings &rarr; Network &rarr; Manual Proxy.</p>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 4: Intercept Traffic    </div>
-            <p>Turn Intercept ON    . Reload Facebook    .</p>
-            <p><strong>Observe:</strong>    </p>
+            <div class="step-title">Step 4: Intercept Traffic</div>
+            <p>Turn Intercept ON. Reload Facebook.</p>
+            <p><strong>Observe:</strong></p>
             <ul>
-                <li>Cookies (datr, fr)    .</li>
-                <li>Session IDs    .</li>
-                <li>Headers    .</li>
-            </ul>
-        </div>
-
-        <div class="step">
-            <div class="step-title">Step 5: Analyze Tracking    </div>
-            <p>Press F12 &rarr; Network tab    . Look for: Ads, Analytics scripts, Third-party requests    .</p>
-        </div>
-
-        <div class="step">
-            <div class="step-title">Findings    </div>
-            <ul>
-                <li>Heavy tracking    .</li>
-                <li>Uses cookies for personalization    .</li>
-                <li>Third-party integrations    .</li>
-            </ul>
-        </div>
-
-        <h2>PART 3: Data Breach Case Study    </h2>
-
-        <div class="step">
-            <div class="step-title">Case Study 1: Facebook Data Breach    </div>
-            <ul>
-                <li>533 million users affected    .</li>
-                <li>Data leaked: Phone numbers, Emails    .</li>
-                <li>Cause: API vulnerability    .</li>
+                <li>Cookies (datr, fr).</li>
+                <li>Session IDs.</li>
+                <li>Headers.</li>
             </ul>
         </div>
 
         <div class="step">
-            <div class="step-title">Case Study 2: WhatsApp Pegasus Attack    </div>
+            <div class="step-title">Step 5: Analyze Tracking</div>
+            <p>Press F12 &rarr; Network tab. Look for: Ads, Analytics scripts, Third-party requests.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Findings</div>
             <ul>
-                <li>Spyware attack via missed call    .</li>
-                <li>Remote device access    .</li>
+                <li>Heavy tracking.</li>
+                <li>Uses cookies for personalization.</li>
+                <li>Third-party integrations.</li>
+            </ul>
+        </div>
+
+        <h2>PART 3: Data Breach Case Study</h2>
+
+        <div class="step">
+            <div class="step-title">Case Study 1: Facebook Data Breach</div>
+            <ul>
+                <li>533 million users affected.</li>
+                <li>Data leaked: Phone numbers, Emails.</li>
+                <li>Cause: API vulnerability.</li>
             </ul>
         </div>
 
         <div class="step">
-            <div class="step-title">Step 3: Check Email Breach    </div>
-            <p>Go to: <code>https://haveibeenpwned.com</code>    . Enter email &rarr; check breach status    .</p>
-        </div>
-
-        <div class="step">
-            <div class="step-title">Analysis Points    </div>
+            <div class="step-title">Case Study 2: WhatsApp Pegasus Attack</div>
             <ul>
-                <li>Type of attack    .</li>
-                <li>Vulnerability    .</li>
-                <li>Data exposed    .</li>
-                <li>Prevention    .</li>
+                <li>Spyware attack via missed call.</li>
+                <li>Remote device access.</li>
             </ul>
         </div>
 
         <div class="step">
-            <div class="step-title">Observations    </div>
+            <div class="step-title">Step 3: Check Email Breach</div>
+            <p>Go to: <code>https://haveibeenpwned.com</code>. Enter email &rarr; check breach status.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Analysis Points</div>
             <ul>
-                <li>WhatsApp uses strong encryption    .</li>
-                <li>Facebook performs extensive tracking    .</li>
-                <li>Data breaches occur due to vulnerabilities    .</li>
+                <li>Type of attack.</li>
+                <li>Vulnerability.</li>
+                <li>Data exposed.</li>
+                <li>Prevention.</li>
             </ul>
         </div>
 
-        <h2>Result    </h2>
-        <p>Privacy audit was successfully performed using Kali Linux tools    . WhatsApp ensures secure communication through encryption, while Facebook shows extensive tracking behavior    . Data breach analysis highlighted risks of poor security practices    .</p>
+        <div class="step">
+            <div class="step-title">Observations</div>
+            <ul>
+                <li>WhatsApp uses strong encryption.</li>
+                <li>Facebook performs extensive tracking.</li>
+                <li>Data breaches occur due to vulnerabilities.</li>
+            </ul>
+        </div>
+
+        <h2>Result</h2>
+        <p>Privacy audit was successfully performed using Kali Linux tools. WhatsApp ensures secure communication through encryption, while Facebook shows extensive tracking behavior. Data breach analysis highlighted risks of poor security practices.</p>
+
+
+        <div class="divider"></div>
+
+        <!-- NEW EXPERIMENT: SECURITY AUDIT & RISK ASSESSMENT -->
+        <h1>Conducting a Security Audit and Risk Assessment </h1>
+        <p><strong>Aim:</strong> To perform a security audit on a Windows system and identify potential vulnerabilities by conducting a risk assessment and suggesting mitigation strategies .</p>
+
+        <h2>Tools Required </h2>
+        <ul>
+            <li>Windows Operating System (Windows 10/11) </li>
+            <li>Windows Security (Defender / Antivirus) </li>
+            <li>Command Prompt </li>
+            <li>Task Manager </li>
+            <li>Web Browser (Google Chrome / Microsoft Edge) </li>
+        </ul>
+
+        <h2>Introduction </h2>
+        <p>A security audit is the process of evaluating a system's security measures to identify vulnerabilities . Risk assessment involves analyzing potential threats, vulnerabilities, and their impact on the system . It helps in implementing appropriate security controls to protect data and resources from cyber threats .</p>
+
+        <h2>Procedure     </h2>
+
+        <div class="step">
+            <div class="step-title">STEP 1: System Information     </div>
+            <p>Press <code>Windows + R</code>     </p>
+            <p>Type:</p>
+            <div class="code-block">msinfo32</div>
+            <p>Note: OS Version, System Type     .</p>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The system information was obtained using the msinfo32 tool     .</li>
+                <li>The system is running on Microsoft Windows 11 Home Single Language, 64-bit operating system, with Intel i5 processor and UEFI-based architecture     .</li>
+                <li>Secure Boot is enabled, indicating a secure boot configuration     .</li>
+                <li>Secure Boot being enabled enhances system security by preventing unauthorized boot loaders     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 2: Check Windows Updates     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Open Settings     </li>
+                <li>Go to Windows Update     </li>
+                <li>Click Check for updates     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The Windows Update section was checked, and it was found that updates are available and pending installation     .</li>
+                <li>The system requires a restart to complete the update process     .</li>
+                <li>Pending updates may expose the system to known vulnerabilities     .</li>
+                <li>Regular updates are essential to maintain system security and protect against threats     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 3: Check Firewall Status     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Search: Windows Defender Firewall     </li>
+                <li>Click Turn Windows Defender Firewall on or off     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The firewall settings were checked using Windows Defender Firewall     .</li>
+                <li>It was observed that firewall settings are managed by Kaspersky antivirus, indicating that a third-party firewall is active on the system     .</li>
+                <li>The presence of a third-party firewall ensures network protection; however, misconfiguration may still expose the system to risks     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 4: Check Antivirus (Windows Security)     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Open Windows Security     </li>
+                <li>Go to Virus &amp; Threat Protection     </li>
+                <li>Check: Real-time protection &rarr; ON     , Last scan &rarr; Recent     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The antivirus status was verified under Virus and Threat Protection     .</li>
+                <li>It was observed that Kaspersky antivirus is active, and no current threats were detected     .</li>
+                <li>Protection settings and updates are functioning properly     .</li>
+                <li>A third-party antivirus like Kaspersky provides advanced protection against malware, phishing, and other cyber threats     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 5: Check Password & Account Security     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Settings &rarr; Accounts &rarr; Sign-in options     </li>
+                <li>Check: Password/PIN enabled     , Windows Hello (optional)     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The account settings and sign-in options were checked     .</li>
+                <li>The system uses a local administrator account with multiple authentication methods such as password and PIN (Windows Hello), ensuring secure access     .</li>
+                <li>Strong authentication mechanisms like PIN and biometric options enhance system security and prevent unauthorized access     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 6: Check Installed Applications     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Settings &rarr; Apps &rarr; Installed apps     </li>
+                <li>Look for: Unknown software     , Cracked tools     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The list of installed applications was reviewed     .</li>
+                <li>No unauthorized or suspicious software was identified in the system     .</li>
+                <li>Unverified or cracked software may introduce malware and compromise system security     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 7: Check Startup Programs     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Press <code>Ctrl + Shift + Esc</code>     </li>
+                <li>Go to Startup tab     </li>
+                <li>Disable: Unknown apps     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>Startup applications were analyzed using Task Manager     .</li>
+                <li>Some applications were enabled at startup, which may impact system performance and security     .</li>
+                <li>Disabling unnecessary startup applications reduces attack surface and improves system performance     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 8: Check Network Security     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Settings &rarr; Network &amp; Internet     </li>
+                <li>Check: WiFi connection     , Network type &rarr; Private/Public     </li>
+                <li>Network Type: Network profile &rarr; Public network (selected)     , Private option available     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The network settings were analyzed, and the system is connected to a Wi-Fi network with a public network profile     .</li>
+                <li>This restricts device visibility and enhances security     .</li>
+                <li>Using a public network profile improves security by limiting unauthorized access, especially in untrusted environments     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 9: Check Browser Security     </div>
+            <p>Steps (Chrome/Edge):     </p>
+            <ul>
+                <li>Go to Settings     </li>
+                <li>Check: Privacy &amp; Security     , Safe browsing ON     , Remove unknown extensions     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The browser security settings were examined under the Privacy and Security section     .</li>
+                <li>Safe Browsing was found to be enabled with standard protection, ensuring protection against malicious websites and unsafe downloads     .</li>
+                <li>Safe Browsing helps prevent phishing attacks, malware infections, and unsafe browsing activities     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 10: Check Data Backup     </div>
+            <p>Steps:     </p>
+            <ul>
+                <li>Search: Backup settings     </li>
+                <li>Check: OneDrive / External backup     </li>
+            </ul>
+            <p><strong>Observation:</strong>     </p>
+            <ul>
+                <li>The backup settings were checked, and it was observed that OneDrive backup is not configured and system data is not being backed up     .</li>
+                <li>Lack of proper backup mechanisms may lead to permanent data loss in case of system failure or cyber attacks such as ransomware     .</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 11: Risk Assessment Table     </div>
+            <table>
+                <tr>
+                    <th>Asset     </th>
+                    <th>Threat     </th>
+                    <th>Vulnerability     </th>
+                    <th>Risk Level     </th>
+                    <th>Solution     </th>
+                </tr>
+                <tr>
+                    <td>Personal Files     </td>
+                    <td>Data Loss     </td>
+                    <td>No Backup     </td>
+                    <td>High     </td>
+                    <td>Enable OneDrive     </td>
+                </tr>
+                <tr>
+                    <td>System     </td>
+                    <td>Malware     </td>
+                    <td>Unknown Apps     </td>
+                    <td>High     </td>
+                    <td>Remove apps     </td>
+                </tr>
+                <tr>
+                    <td>Network     </td>
+                    <td>Hacking     </td>
+                    <td>Public Network     </td>
+                    <td>Medium     </td>
+                    <td>Use Private     </td>
+                </tr>
+                <tr>
+                    <td>Account     </td>
+                    <td>Unauthorized Access     </td>
+                    <td>Weak Password     </td>
+                    <td>High     </td>
+                    <td>Strong password     </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="step">
+            <div class="step-title">STEP 12: Security Recommendations     </div>
+            <p><strong>Technical Controls</strong>     </p>
+            <ul>
+                <li>Enable firewall     </li>
+                <li>Enable antivirus     </li>
+                <li>Regular updates     </li>
+            </ul>
+            <p><strong>Administrative Controls</strong>     </p>
+            <ul>
+                <li>Strong passwords     </li>
+                <li>Avoid unknown downloads     </li>
+            </ul>
+            <p><strong>User Awareness</strong>     </p>
+            <ul>
+                <li>Avoid phishing links     </li>
+                <li>Safe browsing     </li>
+            </ul>
+        </div>
+
+        <h2>STEP 13: Result     </h2>
+        <p>The system security audit identified potential vulnerabilities such as lack of backup and configuration risks     . Suitable mitigation strategies were suggested to improve system security     .</p>
 
     </div>
 </body>
 </html>
-"""
